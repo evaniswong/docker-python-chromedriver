@@ -12,4 +12,4 @@ RUN apk add chromium chromium-chromedriver
 RUN pip install --upgrade pip
 
 # install selenium
-RUN pip install selenium
+RUN pip install selenium bs4
