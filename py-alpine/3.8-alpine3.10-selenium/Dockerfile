@@ -5,11 +5,15 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositorie
     echo "http://dl-4.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories
 
 # install chromedriver
-RUN apk update
-RUN apk add chromium chromium-chromedriver
+RUN apk update && apk add chromium chromium-chromedriver
 
 # upgrade pip
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip && pip install selenium bs4
 
-# install selenium
-RUN pip install selenium bs4
+COPY ./docker_web_func.py /
+
+WORKDIR /
+
+ENTRYPOINT ["python","docker_web_func.py"]
+
+
